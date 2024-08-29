@@ -454,3 +454,64 @@ In this example:
 - `Dog` and `Cat` are concrete classes because they provide full implementations of the `make_sound()` method and can be instantiated to create objects.
 
 
+
+# 12 🔄 **Inheritance in Object-Oriented Programming**
+
+**Inheritance** is a fundamental principle in Object-Oriented Programming (OOP) that allows one class (known as the **subclass** or **derived class**) to inherit attributes and methods from another class (known as the **superclass** or **base class**). It enables code reuse and establishes a hierarchical relationship between classes.
+
+### **Concept:**
+
+- **Superclass (Base Class)**: The class being inherited from. It provides common attributes and methods that can be shared with derived classes.
+- **Subclass (Derived Class)**: The class that inherits from the superclass. It can extend or override the functionality provided by the superclass.
+
+### **Benefits of Inheritance:**
+
+- **Code Reusability**: Reuse existing code from the superclass, reducing duplication.
+- **Extensibility**: Easily extend and modify existing behavior by adding new features or overriding methods.
+- **Hierarchical Relationships**: Establish a logical hierarchy among classes.
+
+### **Example:**
+
+Consider a `Vehicle` class that represents common attributes and methods for all vehicles, and a `Car` class that inherits from `Vehicle` and adds specific features for cars.
+
+### **Code Snippet:**
+
+Here’s an example of inheritance in Python:
+
+```python
+# Superclass (Base Class)
+class Vehicle:
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+
+    def start_engine(self):
+        print(f"{self.make} {self.model} engine started.")
+
+    def stop_engine(self):
+        print(f"{self.make} {self.model} engine stopped.")
+
+# Subclass (Derived Class)
+class Car(Vehicle):
+    def __init__(self, make, model, number_of_doors):
+        super().__init__(make, model)  # Call the superclass constructor
+        self.number_of_doors = number_of_doors
+
+    def honk(self):
+        print("Beep beep!")
+
+# Usage
+my_car = Car("Toyota", "Corolla", 4)
+my_car.start_engine()  # Output: Toyota Corolla engine started.
+my_car.honk()         # Output: Beep beep!
+my_car.stop_engine()  # Output: Toyota Corolla engine stopped.
+```
+
+### **Explanation:**
+
+- **Superclass `Vehicle`**: Defines common attributes (`make`, `model`) and methods (`start_engine()`, `stop_engine()`) that are common to all vehicles.
+- **Subclass `Car`**: Inherits from `Vehicle` and adds an additional attribute (`number_of_doors`) and method (`honk()`). It calls the superclass constructor using `super()` to initialize common attributes.
+- **Usage**: An instance of `Car` can access both the methods defined in `Vehicle` and those defined in `Car`.
+
+**Summary**: Inheritance allows you to create a new class based on an existing class, enabling code reuse and extending the functionality of the base class.
+
