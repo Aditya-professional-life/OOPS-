@@ -239,7 +239,7 @@ Here’s a detailed breakdown:
 
 
 
-# 🔒 **Encapsulation in Object-Oriented Programming**
+# 9 🔒 **Encapsulation in Object-Oriented Programming**
 
 **Encapsulation** is a fundamental principle of Object-Oriented Programming (OOP) that involves bundling the data (attributes) and methods (functions) that operate on the data into a single unit, called a **class**. It also restricts direct access to some of the object's components, which helps in protecting the object's internal state and hiding its implementation details.
 
