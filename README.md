@@ -564,8 +564,105 @@ Here’s an overview of the different types of inheritance and their implementat
   - **Python**: Supported.
 
 ---
+# 🚫 14 Multiple Inheritance and Hybrid Inheritance in Java
+In Java, multiple inheritance and hybrid inheritance are restricted due to specific design choices aimed at avoiding complexity and maintaining code reliability. Here’s a detailed explanation:
 
+### **1. Multiple Inheritance**
 
+**Why Not Supported:**
+
+- **Diamond Problem**: Multiple inheritance can lead to the "Diamond Problem," where a class inherits from two classes that both inherit from a common base class. This can cause ambiguity if the base class has methods that are overridden in the derived classes. For example, if both parent classes define a method differently, which version should the subclass inherit?
+
+  ```java
+  class A {
+      void method() {
+          System.out.println("Method in A");
+      }
+  }
+
+  class B extends A {
+      void method() {
+          System.out.println("Method in B");
+      }
+  }
+
+  class C extends A {
+      void method() {
+          System.out.println("Method in C");
+      }
+  }
+
+  class D extends B, C {  // Error: Cannot extend multiple classes
+  }
+  ```
+
+- **Complexity and Ambiguity**: Multiple inheritance can introduce significant complexity and ambiguity in class hierarchies, making code harder to understand and maintain.
+
+**Java’s Approach:**
+
+- **Interfaces**: Java uses interfaces to provide a way to achieve a form of multiple inheritance. A class can implement multiple interfaces, thus inheriting abstract methods from each interface. Interfaces define methods without implementations, and the implementing class provides the actual method implementations.
+
+  ```java
+  interface A {
+      void methodA();
+  }
+
+  interface B {
+      void methodB();
+  }
+
+  class C implements A, B {
+      public void methodA() {
+          System.out.println("Method A");
+      }
+
+      public void methodB() {
+          System.out.println("Method B");
+      }
+  }
+  ```
+
+### **2. Hybrid Inheritance**
+
+**Why Limited Support:**
+
+- **Inheritance with Interfaces**: Since Java does not support multiple inheritance of classes, hybrid inheritance involving multiple inheritance from classes and interfaces can become complex and lead to ambiguities. Java addresses these issues through its use of interfaces, but it limits the inheritance of multiple classes to prevent ambiguity and maintain simplicity.
+
+- **Simplicity and Consistency**: Java’s design philosophy emphasizes simplicity and reducing the chance of confusion and errors. Allowing complex hybrid inheritance could lead to situations where the behavior of a class is difficult to predict and understand.
+
+**Java’s Approach:**
+
+- **Abstract Classes and Interfaces**: Java allows hybrid behavior using abstract classes and interfaces. Abstract classes can be used to provide partial implementations, while interfaces can be used to define multiple behaviors. This approach avoids the problems associated with multiple and hybrid inheritance by maintaining a clear and manageable hierarchy.
+
+  ```java
+  interface A {
+      void methodA();
+  }
+
+  interface B {
+      void methodB();
+  }
+
+  abstract class Base {
+      abstract void methodBase();
+  }
+
+  class C extends Base implements A, B {
+      public void methodA() {
+          System.out.println("Method A");
+      }
+
+      public void methodB() {
+          System.out.println("Method B");
+      }
+
+      void methodBase() {
+          System.out.println("Method in Base");
+      }
+  }
+  ```
+
+In summary, Java’s restriction on multiple and hybrid inheritance aims to avoid the complications and ambiguities associated with these inheritance types, promoting simpler and more reliable code through the use of interfaces and abstract classes.
 
 
 
