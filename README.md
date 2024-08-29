@@ -665,6 +665,74 @@ In Java, multiple inheritance and hybrid inheritance are restricted due to speci
 In summary, Java’s restriction on multiple and hybrid inheritance aims to avoid the complications and ambiguities associated with these inheritance types, promoting simpler and more reliable code through the use of interfaces and abstract classes.
 
 
+# 15 🧩 **Interfaces in Java**
 
+**Interfaces** in Java are a fundamental concept used to define a contract or a set of methods that implementing classes must provide. Interfaces are used to achieve abstraction and multiple inheritance in Java, allowing different classes to agree on a set of methods without sharing a common class hierarchy.
+
+### **Definition and Purpose:**
+
+- **Definition**: An interface is a reference type in Java, similar to a class, that can contain only constants, method signatures, default methods, static methods, and nested types. Interfaces cannot contain instance fields or constructors.
+- **Purpose**: Interfaces provide a way to specify a set of methods that a class must implement, ensuring that certain behaviors are available across different classes. They enable a form of multiple inheritance by allowing a class to implement multiple interfaces.
+
+### **Key Characteristics:**
+
+1. **Method Declarations**: Interfaces can declare methods, but they do not provide implementations for those methods (unless they are default or static methods).
+2. **Default Methods**: Since Java 8, interfaces can include default methods with a concrete implementation. These methods provide a default behavior that implementing classes can use or override.
+3. **Static Methods**: Interfaces can also contain static methods, which must be called using the interface name.
+4. **No Instance Fields**: Interfaces cannot have instance fields. They can only contain static final constants.
+5. **Implementation**: Classes that implement an interface must provide implementations for all the abstract methods declared in the interface.
+
+### **Example:**
+
+Here’s an example to illustrate how interfaces are used in Java:
+
+```java
+// Define an interface
+interface Animal {
+    void eat();  // Abstract method
+
+    default void sleep() {  // Default method
+        System.out.println("Animal is sleeping...");
+    }
+
+    static void breathe() {  // Static method
+        System.out.println("Animal is breathing...");
+    }
+}
+
+// Implement the interface
+class Dog implements Animal {
+    @Override
+    public void eat() {
+        System.out.println("Dog is eating...");
+    }
+
+    // Optionally override the default method
+    @Override
+    public void sleep() {
+        System.out.println("Dog is sleeping...");
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.eat();       // Output: Dog is eating...
+        myDog.sleep();     // Output: Dog is sleeping...
+        Animal.breathe();  // Output: Animal is breathing...
+    }
+}
+```
+
+### **Explanation:**
+
+- **Interface `Animal`**: Declares an abstract method `eat()`, a default method `sleep()`, and a static method `breathe()`.
+- **Class `Dog`**: Implements the `Animal` interface, providing an implementation for the `eat()` method and optionally overriding the `sleep()` method. It does not need to implement the static method `breathe()`, as it belongs to the interface itself.
+- **Usage**: The `Dog` class can use the default and static methods provided by the `Animal` interface, while ensuring it provides an implementation for the abstract methods.
+
+**Summary**: Interfaces in Java are used to define a contract of methods that implementing classes must adhere to, enabling abstraction and providing a mechanism for multiple inheritance through method implementations.
+
+---
 
 
