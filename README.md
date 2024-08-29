@@ -57,3 +57,22 @@ A class is a user-defined data type that serves as a blueprint for creating inst
 
 ---
 
+
+# 🔧 **Are Methods and Functions Different in the Context of Java, C++, and Python?**
+
+In programming, the terms **methods** and **functions** are often used interchangeably, but there are subtle differences in how they are used in languages like Java, C++, and Python:
+
+- **Java**:  
+  In Java, a **method** is a function that is associated with a class or object. Every function must be defined inside a class, and it operates on the object’s data (attributes). Functions not associated with a class do not exist in Java.
+
+- **C++**:  
+  C++ allows both **functions** and **methods**. A **function** can exist independently and doesn’t need to be part of a class, whereas a **method** is specifically a function defined inside a class, designed to operate on the class’s objects.
+
+- **Python**:  
+  In Python, the term **function** is used for standalone blocks of code that perform a task, whereas **methods** are functions that are defined within a class and act on the object’s attributes.
+
+**Summary**:  
+- **Methods** are functions tied to objects or classes (OOP context).
+- **Functions** can exist independently of objects, except in languages like Java where every function must be a method.
+
+---
