@@ -76,3 +76,87 @@ In programming, the terms **methods** and **functions** are often used interchan
 - **Functions** can exist independently of objects, except in languages like Java where every function must be a method.
 
 ---
+
+
+
+# 🏗️ **How to Create a Class in C++, Python, and Java**
+
+### **1. C++:**
+
+In C++, a class is created using the `class` keyword followed by the class name. Here's a basic structure:
+
+```cpp
+class MyClass {
+public:
+    int myNumber;       // Attribute
+    void myMethod() {   // Method
+        cout << "Hello from MyClass!" << endl;
+    }
+};
+```
+
+To create an object:
+```cpp
+MyClass obj;
+obj.myMethod();
+```
+
+### **2. Python:**
+
+In Python, a class is created using the `class` keyword, followed by the class name. The `__init__()` method is used as a constructor to initialize the object's attributes.
+
+```python
+class MyClass:
+    def __init__(self, my_number):
+        self.my_number = my_number  # Attribute
+
+    def my_method(self):
+        print("Hello from MyClass!")  # Method
+```
+
+To create an object:
+```python
+obj = MyClass(10)
+obj.my_method()
+```
+
+### **3. Java:**
+
+In Java, a class is defined using the `class` keyword. Methods and attributes are defined inside the class.
+
+```java
+class MyClass {
+    int myNumber;       // Attribute
+    
+    // Constructor
+    public MyClass(int number) {
+        myNumber = number;
+    }
+
+    // Method
+    public void myMethod() {
+        System.out.println("Hello from MyClass!");
+    }
+}
+```
+
+To create an object:
+```java
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass(10);
+        obj.myMethod();
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
