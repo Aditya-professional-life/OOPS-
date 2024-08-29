@@ -303,7 +303,7 @@ Encapsulation helps in:
 
 
 
-# 🧩 **Abstraction in Object-Oriented Programming**
+# 10 🧩 **Abstraction in Object-Oriented Programming**
 
 **Abstraction** is a principle of Object-Oriented Programming (OOP) that focuses on hiding the complex implementation details of a system and exposing only the necessary and relevant parts to the user. It simplifies the interaction with complex systems by providing a clear and simplified interface.
 
