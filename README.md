@@ -79,7 +79,7 @@ In programming, the terms **methods** and **functions** are often used interchan
 
 
 
-# 🏗️ **How to Create a Class in C++, Python, and Java**
+# 6 🏗️ **How to Create a Class in C++, Python, and Java**
 
 ### **1. C++:**
 
