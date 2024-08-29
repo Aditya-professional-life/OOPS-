@@ -189,9 +189,52 @@ Here’s a detailed breakdown:
 **Summary:** `self` is a convention used in Python to refer to the instance of the class itself, enabling methods to access and modify the object’s attributes and call other methods.
 
 ---
+-
 
+# 8️⃣ **Difference Between Class and Object**
 
+**Class** and **Object** are fundamental concepts in Object-Oriented Programming (OOP) with distinct roles:
 
+### **Class:**
+
+- **Definition**: A class is a blueprint or template for creating objects. It defines the **attributes** (data) and **methods** (functions) that the objects created from the class will have.
+- **Purpose**: The class encapsulates the structure and behaviors that are common to all objects of that type.
+- **Example**:
+  ```python
+  class Car:
+      def __init__(self, brand, model):
+          self.brand = brand
+          self.model = model
+
+      def start_engine(self):
+          print(f"{self.brand} {self.model}'s engine started.")
+  ```
+
+### **Object:**
+
+- **Definition**: An object is an instance of a class. It is a concrete realization of the class with actual values for its attributes and the ability to use its methods.
+- **Purpose**: Objects represent specific entities with state and behavior as defined by their class.
+- **Example**:
+  ```python
+  my_car = Car("Toyota", "Corolla")
+  my_car.start_engine()  # Output: Toyota Corolla's engine started.
+  ```
+
+### **Key Differences:**
+
+1. **Nature**:
+   - **Class**: Abstract; defines structure and behavior.
+   - **Object**: Concrete; an actual instance with specific data.
+
+2. **Creation**:
+   - **Class**: Defined once in code.
+   - **Object**: Created by instantiating the class.
+
+3. **Usage**:
+   - **Class**: Serves as a template for creating objects.
+   - **Object**: Operates based on the class template, holding actual data and performing actions.
+
+**Summary**: A class provides the blueprint, while an object is an instance of that blueprint with actual data and functionality.
 
 
 
