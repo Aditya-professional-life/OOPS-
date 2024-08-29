@@ -515,3 +515,59 @@ my_car.stop_engine()  # Output: Toyota Corolla engine stopped.
 
 **Summary**: Inheritance allows you to create a new class based on an existing class, enabling code reuse and extending the functionality of the base class.
 
+Here’s an overview of the different types of inheritance and their implementation possibilities in C++, Java, and Python:
+
+---
+
+# 13 🧩 **Types of Inheritance**
+![image](https://github.com/user-attachments/assets/0c6d7dc1-1551-4252-8e5c-068b833cfe80)
+
+
+### **1. Single Inheritance**
+
+- **Definition**: A type of inheritance where a class (subclass) inherits from only one superclass (base class).
+- **Implementation**:
+  - **C++**: Supported.
+  - **Java**: Supported.
+  - **Python**: Supported.
+
+### **2. Multiple Inheritance**
+
+- **Definition**: A type of inheritance where a class (subclass) inherits from more than one superclass.
+- **Implementation**:
+  - **C++**: Supported.
+  - **Java**: Not supported directly; Java uses interfaces to achieve similar results.
+  - **Python**: Supported.
+
+### **3. Multilevel Inheritance**
+
+- **Definition**: A type of inheritance where a class is derived from another derived class, creating a chain of inheritance.
+- **Implementation**:
+  - **C++**: Supported.
+  - **Java**: Supported.
+  - **Python**: Supported.
+
+### **4. Hierarchical Inheritance**
+
+- **Definition**: A type of inheritance where multiple subclasses inherit from a single superclass.
+- **Implementation**:
+  - **C++**: Supported.
+  - **Java**: Supported.
+  - **Python**: Supported.
+
+### **5. Hybrid Inheritance**
+
+- **Definition**: A type of inheritance that combines two or more types of inheritance. For example, a combination of multiple and hierarchical inheritance.
+- **Implementation**:
+  - **C++**: Supported.
+  - **Java**: Limited support due to its restrictions on multiple inheritance. Hybrid inheritance involving interfaces is supported.
+  - **Python**: Supported.
+
+---
+
+
+
+
+
+
+
