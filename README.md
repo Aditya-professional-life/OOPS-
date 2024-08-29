@@ -16,3 +16,19 @@ OOP allows for:
 
 OOP makes software development more modular, reusable, and easier to maintain.
 
+
+
+# 🧠 **Why is Object-Oriented Programming (OOP) Required?**
+
+**Object-Oriented Programming (OOP)** is required because it provides several advantages that improve software development:
+
+- **Modularity**: Code can be divided into reusable modules (classes) that reduce redundancy.
+- **Maintainability**: Well-structured code is easier to update and maintain over time.
+- **Reusability**: Classes and objects can be reused across different programs, reducing development time.
+- **Scalability**: OOP allows for easier modification and expansion of code as applications grow.
+- **Security**: Encapsulation hides sensitive data from external interference, enhancing security.
+
+OOP encourages organized, efficient, and collaborative coding, making it essential for modern software development.
+
+---
+
