@@ -239,7 +239,66 @@ Here’s a detailed breakdown:
 
 
 
+# 🔒 **Encapsulation in Object-Oriented Programming**
 
+**Encapsulation** is a fundamental principle of Object-Oriented Programming (OOP) that involves bundling the data (attributes) and methods (functions) that operate on the data into a single unit, called a **class**. It also restricts direct access to some of the object's components, which helps in protecting the object's internal state and hiding its implementation details.
+
+### **Concept:**
+
+Encapsulation allows:
+- **Data Hiding**: Preventing unauthorized access and modification of data by making some attributes or methods private.
+- **Controlled Access**: Providing public methods (getters and setters) to interact with private attributes, ensuring controlled access and modifications.
+
+### **Example:**
+
+Consider a `BankAccount` class that represents a bank account. Encapsulation is used to hide the internal balance and ensure that the balance can only be changed through controlled methods.
+
+### **Code Snippet:**
+
+```python
+class BankAccount:
+    def __init__(self, account_number, initial_balance):
+        self.__account_number = account_number  # Private attribute
+        self.__balance = initial_balance        # Private attribute
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+        else:
+            print("Deposit amount must be positive")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+        else:
+            print("Insufficient funds or invalid amount")
+
+    def get_balance(self):
+        return self.__balance
+
+# Usage
+account = BankAccount("123456789", 1000)
+print(f"Initial Balance: ${account.get_balance()}")  # Output: Initial Balance: $1000
+
+account.deposit(500)
+print(f"Balance after deposit: ${account.get_balance()}")  # Output: Balance after deposit: $1500
+
+account.withdraw(200)
+print(f"Balance after withdrawal: ${account.get_balance()}")  # Output: Balance after withdrawal: $1300
+
+# Trying to access private attributes directly (will raise an AttributeError)
+# print(account.__balance)  # AttributeError: 'BankAccount' object has no attribute '__balance'
+```
+
+### **Explanation:**
+
+- **Private Attributes**: The attributes `__account_number` and `__balance` are private, meaning they cannot be accessed directly from outside the class. This is achieved by prefixing the attribute names with double underscores (`__`).
+- **Public Methods**: The `deposit`, `withdraw`, and `get_balance` methods provide controlled access to the `__balance` attribute. These methods ensure that the balance is updated only in a valid manner and can be retrieved without exposing the internal details.
+
+Encapsulation helps in:
+- Protecting the internal state of an object.
+- Ensuring that data is manipulated only through well-defined interfaces.
+- Enhancing maintainability and flexibility of the code.
 
 
 
