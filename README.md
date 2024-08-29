@@ -303,3 +303,69 @@ Encapsulation helps in:
 
 
 
+# 🧩 **Abstraction in Object-Oriented Programming**
+
+**Abstraction** is a principle of Object-Oriented Programming (OOP) that focuses on hiding the complex implementation details of a system and exposing only the necessary and relevant parts to the user. It simplifies the interaction with complex systems by providing a clear and simplified interface.
+
+### **Concept:**
+
+Abstraction involves:
+- **Defining Interfaces**: Creating abstract classes or interfaces that define the methods and properties that derived classes should implement.
+- **Hiding Implementation Details**: Encapsulating complex implementation logic and exposing only the necessary operations.
+
+### **Example:**
+
+Consider a `Shape` class that provides a general interface for different shapes, such as circles and rectangles. Each shape has a different way of calculating the area, but the interface remains consistent.
+
+### **Code Snippet:**
+
+Here’s how you might implement abstraction using an abstract class in Python:
+
+```python
+from abc import ABC, abstractmethod
+
+# Abstract class
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+# Concrete class implementing the abstract class
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius * self.radius
+
+# Another concrete class implementing the abstract class
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+# Usage
+shapes = [Circle(5), Rectangle(4, 6)]
+
+for shape in shapes:
+    print(f"Area: {shape.area()}")
+```
+
+### **Explanation:**
+
+- **Abstract Class**: `Shape` is an abstract class with an abstract method `area()`. It defines a common interface for all shapes but does not provide an implementation for `area()`.
+- **Concrete Classes**: `Circle` and `Rectangle` are concrete classes that inherit from `Shape` and provide specific implementations for the `area()` method.
+- **Usage**: When creating instances of `Circle` and `Rectangle`, you can use the `area()` method without needing to know the details of how the area is calculated for each shape. The `Shape` class provides an abstraction by defining a common interface.
+
+**Benefits of Abstraction:**
+- Simplifies code by hiding complex details.
+- Promotes modularity and easier maintenance.
+- Allows for a unified interface to interact with different types of objects.
+
+---
+
+
+
