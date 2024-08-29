@@ -734,5 +734,83 @@ public class Main {
 **Summary**: Interfaces in Java are used to define a contract of methods that implementing classes must adhere to, enabling abstraction and providing a mechanism for multiple inheritance through method implementations.
 
 ---
+# 16 🔄 **Polymorphism in Python**
 
+**Polymorphism** is a core concept in Object-Oriented Programming (OOP) that allows objects of different classes to be treated as objects of a common superclass. It refers to the ability to define methods that can operate on objects of different types, using a common interface. Polymorphism is achieved through method overriding and method overloading.
+
+### **Concepts of Polymorphism:**
+
+1. **Method Overriding**: This occurs when a subclass provides a specific implementation of a method that is already defined in its superclass. The method in the subclass has the same name, parameters, and return type as the one in the superclass.
+
+2. **Duck Typing**: In Python, polymorphism is often achieved through duck typing. Duck typing is a concept where the type or class of an object is determined by its behavior (methods and properties) rather than its explicit inheritance. If an object implements the methods required by an interface, it can be used interchangeably with other objects implementing the same methods.
+
+### **Examples:**
+
+#### **1. Method Overriding**
+
+Here’s an example of method overriding in Python:
+
+```python
+class Animal:
+    def speak(self):
+        return "Animal speaks"
+
+class Dog(Animal):
+    def speak(self):
+        return "Dog barks"
+
+class Cat(Animal):
+    def speak(self):
+        return "Cat meows"
+
+# Function demonstrating polymorphism
+def make_animal_speak(animal):
+    print(animal.speak())
+
+# Usage
+dog = Dog()
+cat = Cat()
+
+make_animal_speak(dog)  # Output: Dog barks
+make_animal_speak(cat)  # Output: Cat meows
+```
+
+**Explanation**:
+- **Superclass `Animal`**: Defines a method `speak()`.
+- **Subclasses `Dog` and `Cat`**: Override the `speak()` method to provide specific implementations.
+- **Function `make_animal_speak()`**: Demonstrates polymorphism by accepting any `Animal` object and calling its `speak()` method. The actual method called depends on the type of object passed (either `Dog` or `Cat`).
+
+#### **2. Duck Typing**
+
+Here’s an example of duck typing in Python:
+
+```python
+class Bird:
+    def fly(self):
+        return "Bird flies"
+
+class Airplane:
+    def fly(self):
+        return "Airplane flies"
+
+def make_it_fly(thing):
+    print(thing.fly())
+
+# Usage
+bird = Bird()
+plane = Airplane()
+
+make_it_fly(bird)   # Output: Bird flies
+make_it_fly(plane)  # Output: Airplane flies
+```
+
+**Explanation**:
+- **Classes `Bird` and `Airplane`**: Both define a method `fly()`, but they are not related through inheritance.
+- **Function `make_it_fly()`**: Accepts any object that has a `fly()` method. This demonstrates duck typing because the function does not care about the type of object but relies on the presence of the `fly()` method.
+
+### **Summary:**
+
+Polymorphism in Python allows for flexible and reusable code by enabling objects of different classes to be treated through a common interface. Method overriding provides a way for subclasses to implement specific behaviors, while duck typing leverages the method names and behaviors to achieve polymorphism without explicit type checks.
+
+---
 
