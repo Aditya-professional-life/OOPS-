@@ -47,3 +47,13 @@ Each technique has its own strengths and is suited for different types of proble
 
 ---
 
+
+# 🏛️ **What is a Class?**
+
+A **class** is a blueprint or template for creating objects in **Object-Oriented Programming (OOP)**. It defines the **attributes** (data) and **methods** (functions) that the created objects will have. A class encapsulates the properties and behaviors that are common to all objects of a particular type.
+
+**Formal Definition**:  
+A class is a user-defined data type that serves as a blueprint for creating instances (objects), defining their attributes and methods, and organizing the structure and behavior of objects in an OOP system.
+
+---
+
