@@ -3,7 +3,7 @@
 # 🖥️ **Object-Oriented Programming (OOP) Concepts**
 
 
-# 🔍 **What is Object-Oriented Programming (OOP)?**
+# 1 🔍 **What is Object-Oriented Programming (OOP)?**
 
 **Object-Oriented Programming (OOP)** is a programming paradigm centered around the concept of **objects**, which can contain data in the form of fields (often known as attributes or properties) and code in the form of procedures (methods). 
 
@@ -18,7 +18,7 @@ OOP makes software development more modular, reusable, and easier to maintain.
 
 
 
-# 🧠 **Why is Object-Oriented Programming (OOP) Required?**
+# 2 🧠 **Why is Object-Oriented Programming (OOP) Required?**
 
 **Object-Oriented Programming (OOP)** is required because it provides several advantages that improve software development:
 
@@ -33,7 +33,7 @@ OOP encourages organized, efficient, and collaborative coding, making it essenti
 ---
 
 
-# 🔄 **Are There Any Other Programming Techniques Besides OOP?**
+# 3 🔄 **Are There Any Other Programming Techniques Besides OOP?**
 
 Yes, besides **Object-Oriented Programming (OOP)**, there are several other programming techniques, including:
 
@@ -48,7 +48,7 @@ Each technique has its own strengths and is suited for different types of proble
 ---
 
 
-# 🏛️ **What is a Class?**
+# 4 🏛️ **What is a Class?**
 
 A **class** is a blueprint or template for creating objects in **Object-Oriented Programming (OOP)**. It defines the **attributes** (data) and **methods** (functions) that the created objects will have. A class encapsulates the properties and behaviors that are common to all objects of a particular type.
 
@@ -58,7 +58,7 @@ A class is a user-defined data type that serves as a blueprint for creating inst
 ---
 
 
-# 🔧 **Are Methods and Functions Different in the Context of Java, C++, and Python?**
+# 5 🔧 **Are Methods and Functions Different in the Context of Java, C++, and Python?**
 
 In programming, the terms **methods** and **functions** are often used interchangeably, but there are subtle differences in how they are used in languages like Java, C++, and Python:
 
