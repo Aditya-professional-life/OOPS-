@@ -1937,6 +1937,82 @@ public class Main {
 - **C++**: Explicitly uses `public`, `protected`, and `private`.
 - **Java**: Uses `public`, `protected`, `private`, and package-private (default).
 
+Here's a clear and visually appealing breakdown of **Composition** vs **Aggregation** in the context of object relationships:
+
+---
+
+## 24 🔄 **Composition vs Aggregation**
+
+### 🧩 **Composition**
+
+**Composition** represents a "strong" relationship between objects. It indicates that one class is made up of one or more objects of other classes, and these objects are typically created and managed by the parent class. If the parent object is destroyed, its composed objects are also destroyed.
+
+#### Characteristics:
+- **Strong ownership**: The lifetime of the composed objects is tied to the parent object.
+- **Tightly coupled**: The child objects cannot exist independently of the parent object.
+- **Part of**: Represents a relationship where the child objects are integral parts of the parent object.
+
+#### Example:
+```python
+class Engine:
+    def __init__(self):
+        print("Engine created")
+
+    def __del__(self):
+        print("Engine destroyed")
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()  # Engine is part of Car
+        print("Car created")
+
+    def __del__(self):
+        print("Car destroyed")
+
+# Creating a Car object also creates an Engine object
+car = Car()
+del car  # Output: Engine destroyed \n Car destroyed
+```
+
+### 🔗 **Aggregation**
+
+**Aggregation** represents a "weaker" relationship where one class contains references to objects of other classes. The lifetime of the aggregated objects is independent of the parent object. Aggregated objects can exist independently of the parent object.
+
+#### Characteristics:
+- **Weak ownership**: The lifetime of the aggregated objects is not tied to the parent object.
+- **Loosely coupled**: The child objects can exist independently of the parent object.
+- **Has-a**: Represents a relationship where the parent object "has" references to other objects.
+
+#### Example:
+```python
+class Engine:
+    def __init__(self):
+        print("Engine created")
+
+    def __del__(self):
+        print("Engine destroyed")
+
+class Car:
+    def __init__(self, engine):
+        self.engine = engine  # Car "has" an Engine
+        print("Car created")
+
+    def __del__(self):
+        print("Car destroyed")
+
+# Creating an Engine object and sharing it with multiple Car objects
+engine = Engine()
+car1 = Car(engine)
+car2 = Car(engine)
+del car1  # Output: Car destroyed
+del car2  # Output: Car destroyed
+# Engine is not destroyed here because it's not tied to the Car
+```
+
+### 🌟 **Summary**
+
+- **Composition**: Represents a strong relationship where the child objects' lifetimes are dependent on the parent object. The parent creates and manages the child objects.
+- **Aggregation**: Represents a weaker relationship where the child objects can exist independently of the parent object. The parent object references existing child objects.
 
 
 
