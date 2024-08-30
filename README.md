@@ -1790,7 +1790,7 @@ int main() {
 
 ---
 
-## Access Specifiers and Visibility
+## 23Access Specifiers and Visibility
 
 ### 🐍 **In Python**
 
