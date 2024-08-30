@@ -813,4 +813,97 @@ make_it_fly(plane)  # Output: Airplane flies
 Polymorphism in Python allows for flexible and reusable code by enabling objects of different classes to be treated through a common interface. Method overriding provides a way for subclasses to implement specific behaviors, while duck typing leverages the method names and behaviors to achieve polymorphism without explicit type checks.
 
 ---
+# 17 🏗️ **Constructors and Destructors in Python**
+
+**Constructors** and **destructors** are special methods used to initialize and clean up objects in Python.
+
+### **Constructors**
+
+**Definition**: A constructor is a special method that is automatically called when an object is created. It is used to initialize the object’s attributes or perform setup operations.
+
+- **Method Name**: In Python, the constructor method is named `__init__`.
+- **Purpose**: To initialize an object with specific values or perform any setup that is needed before the object is used.
+
+**Syntax**:
+```python
+class ClassName:
+    def __init__(self, parameters):
+        # Initialization code
+        self.attribute = value
+```
+
+**Example**:
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display_info(self):
+        print(f"Name: {self.name}, Age: {self.age}")
+
+# Usage
+person = Person("Alice", 30)
+person.display_info()  # Output: Name: Alice, Age: 30
+```
+
+**Explanation**:
+- **`__init__` Method**: Initializes the `Person` object with `name` and `age` attributes.
+- **Object Creation**: When `Person("Alice", 30)` is called, the `__init__` method initializes the object's `name` and `age`.
+
+### **Destructors**
+
+**Definition**: A destructor is a special method that is automatically called when an object is destroyed. It is used to perform any cleanup or release resources that the object may be holding.
+
+- **Method Name**: In Python, the destructor method is named `__del__`.
+- **Purpose**: To clean up any resources or perform finalization before the object is removed from memory.
+
+**Syntax**:
+```python
+class ClassName:
+    def __del__(self):
+        # Cleanup code
+        print("Destructor called, object deleted")
+```
+
+**Example**:
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __del__(self):
+        print(f"Destructor called for {self.name}")
+
+    def display_info(self):
+        print(f"Name: {self.name}, Age: {self.age}")
+
+# Usage
+person = Person("Bob", 25)
+person.display_info()  # Output: Name: Bob, Age: 25
+del person             # Output: Destructor called for Bob
+```
+
+**Explanation**:
+- **`__del__` Method**: Called when the `Person` object is about to be destroyed. It prints a message indicating that the destructor is called.
+- **Object Deletion**: Using `del person` triggers the `__del__` method, demonstrating the cleanup action.
+
+### **Key Points**:
+
+- **Constructors**:
+  - Used for initializing object attributes.
+  - Automatically called when an object is created.
+  - Can take parameters to set initial values.
+
+- **Destructors**:
+  - Used for cleanup or releasing resources.
+  - Automatically called when an object is about to be destroyed.
+  - May not be called immediately when an object goes out of scope, as Python uses garbage collection.
+
+### **Notes**:
+
+- **Garbage Collection**: Python uses garbage collection to manage memory, which means that the timing of destructor calls can be unpredictable. The `__del__` method may not always be called immediately when an object goes out of scope.
+
+---
 
