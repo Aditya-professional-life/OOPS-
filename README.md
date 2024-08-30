@@ -1348,3 +1348,138 @@ bike.start()  # Output: Starting the bike...
 4. **Abstraction**: Provides a way to define what actions should be available to an object without defining how those actions work.
 
 ---
+
+
+# 20⚙️ **Method Overloading in OOP**
+
+**Method Overloading** refers to the ability to define multiple methods with the same name but different parameter lists in the same class. It's a feature that allows a class to have more than one method with the same name, differentiated by the number, type, or order of parameters.
+
+### **Key Points**:
+- **Method Name**: Same across all overloaded methods.
+- **Parameters**: Must differ in type, number, or both.
+- **Return Type**: Return type may or may not be the same.
+
+---
+
+### **Method Overloading in Different Languages**:
+
+#### **1. C++**:
+In **C++**, method overloading is fully supported. You can define multiple methods with the same name but different parameter lists, and the correct method is chosen based on the arguments passed at the time of the call (this is known as compile-time polymorphism).
+
+**Example in C++**:
+```cpp
+#include <iostream>
+using namespace std;
+
+class Calculator {
+public:
+    // Method to add two integers
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    // Method to add three integers
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+};
+
+int main() {
+    Calculator calc;
+    cout << "Sum of 2 numbers: " << calc.add(10, 20) << endl;        // Output: 30
+    cout << "Sum of 3 numbers: " << calc.add(10, 20, 30) << endl;    // Output: 60
+    return 0;
+}
+```
+
+**Explanation**:
+- Both methods are named `add()`, but one takes two parameters, and the other takes three. The appropriate method is selected based on the number of arguments passed.
+
+---
+
+#### **2. Java**:
+In **Java**, method overloading is also fully supported. The methods can have the same name but different parameter lists, and the Java compiler determines which method to call based on the method signature.
+
+**Example in Java**:
+```java
+class Calculator {
+    // Method to add two integers
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    // Method to add three integers
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println("Sum of 2 numbers: " + calc.add(10, 20));        // Output: 30
+        System.out.println("Sum of 3 numbers: " + calc.add(10, 20, 30));    // Output: 60
+    }
+}
+```
+
+**Explanation**:
+- Both methods are named `add()`, but with different numbers of parameters. Java automatically selects the correct method based on the number of arguments provided.
+
+---
+
+#### **3. Python**:
+**Python** does not support method overloading in the traditional sense. Python methods can only have one method with a given name in a class. However, method overloading can be simulated by using default arguments or `*args` (variable-length arguments).
+
+**Example in Python (using default arguments)**:
+```python
+class Calculator:
+    # Method to handle 2 or 3 arguments
+    def add(self, a, b, c=0):
+        return a + b + c
+
+# Usage
+calc = Calculator()
+print("Sum of 2 numbers:", calc.add(10, 20))          # Output: 30
+print("Sum of 3 numbers:", calc.add(10, 20, 30))      # Output: 60
+```
+
+**Example in Python (using `*args`)**:
+```python
+class Calculator:
+    def add(self, *args):
+        return sum(args)
+
+# Usage
+calc = Calculator()
+print("Sum of 2 numbers:", calc.add(10, 20))          # Output: 30
+print("Sum of 3 numbers:", calc.add(10, 20, 30))      # Output: 60
+```
+
+**Explanation**:
+- Python allows the use of **default arguments** and **variable-length arguments** (`*args`) to simulate method overloading. The `add()` method can handle both 2 or 3 arguments in these examples.
+
+---
+
+### **Is Method Overloading Possible?**:
+
+| **Language** | **Method Overloading Support**     |
+|--------------|------------------------------------|
+| **C++**      | Fully supported                    |
+| **Java**     | Fully supported                    |
+| **Python**   | Not traditionally supported, but can be simulated with default arguments or `*args` |
+
+---
+
+### **Method Overloading vs Method Overriding**:
+
+- **Method Overloading**: Multiple methods with the same name but different parameter lists in the same class. Happens at compile time (compile-time polymorphism).
+- **Method Overriding**: A method in a subclass has the same name, return type, and parameters as a method in its superclass. Happens at runtime (runtime polymorphism).
+
+---
+
+### **Advantages of Method Overloading**:
+1. **Code Readability**: Provides a cleaner way to handle different types or numbers of parameters without changing method names.
+2. **Reusability**: Allows you to reuse method names, thus making code concise and readable.
+3. **Compile-Time Polymorphism**: Helps achieve compile-time polymorphism, improving program flexibility.
+
