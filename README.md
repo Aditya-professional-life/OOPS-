@@ -1437,6 +1437,115 @@ class Calculator:
     # Method to handle 2 or 3 arguments
     def add(self, a, b, c=0):
         return a + b + c
+```
+
+
+# 23 🔄 **Method Overriding in Python**
+
+**Method Overriding** is a feature in object-oriented programming where a subclass provides a specific implementation of a method that is already defined in its parent class. The method in the subclass overrides the method in the parent class, allowing for dynamic (runtime) polymorphism.
+
+### **Key Points**:
+- **Same Method Name**: The method in the subclass must have the same name as the method in the parent class.
+- **Same Parameters**: The method signature (name, parameters) should be the same in both the parent and child classes.
+- **Dynamic Polymorphism**: It allows Python to determine which method to call at runtime based on the object's type.
+
+---
+
+### **Why Method Overriding?**
+Method overriding is useful when:
+- You want a subclass to have a different behavior for a method inherited from a parent class.
+- You need dynamic polymorphism, allowing for different implementations of the same method based on the object type at runtime.
+
+---
+
+### **Example of Method Overriding in Python**:
+
+In the following example, the `Animal` class has a `sound()` method, but the `Dog` and `Cat` subclasses override this method to provide their own specific sound.
+
+```python
+# Parent class
+class Animal:
+    def sound(self):
+        return "Some generic animal sound"
+
+# Child class 1 - Dog
+class Dog(Animal):
+    def sound(self):
+        return "Bark"
+
+# Child class 2 - Cat
+class Cat(Animal):
+    def sound(self):
+        return "Meow"
+
+# Usage
+my_dog = Dog()
+my_cat = Cat()
+
+print(my_dog.sound())  # Output: Bark
+print(my_cat.sound())  # Output: Meow
+```
+
+**Explanation**:
+- The parent class `Animal` has a method `sound()` which returns a generic sound.
+- Both the `Dog` and `Cat` classes override the `sound()` method to provide their specific implementations (`Bark` and `Meow`, respectively).
+- At runtime, Python determines which `sound()` method to call based on the object (`Dog` or `Cat`).
+
+---
+
+### **Method Overriding with `super()`**:
+
+The `super()` function can be used to call the parent class's method inside the overriding method. This allows us to retain the behavior of the parent class while extending or modifying it in the subclass.
+
+**Example**:
+```python
+# Parent class
+class Animal:
+    def sound(self):
+        return "Some generic animal sound"
+
+# Child class - Dog
+class Dog(Animal):
+    def sound(self):
+        parent_sound = super().sound()  # Call parent class method
+        return f"{parent_sound} and Bark"
+
+# Usage
+my_dog = Dog()
+print(my_dog.sound())  # Output: Some generic animal sound and Bark
+```
+
+**Explanation**:
+- In the `Dog` class, the `sound()` method overrides the parent class method, but `super().sound()` is used to first call the parent class’s method before appending `" and Bark"`.
+
+---
+
+### **Differences Between Method Overriding and Method Overloading**:
+
+| **Aspect**              | **Method Overriding**                                      | **Method Overloading**                                         |
+|-------------------------|------------------------------------------------------------|----------------------------------------------------------------|
+| **Definition**           | Redefining a method in a subclass with the same name as in the parent class | Defining multiple methods in the same class with the same name but different parameter lists |
+| **Polymorphism Type**    | Runtime (dynamic polymorphism)                             | Compile-time (static polymorphism, not supported in Python)     |
+| **Parameters**           | Same parameters as the parent class method                 | Different number/type/order of parameters                       |
+| **Usage**                | Used to change the behavior of a parent class method       | Used to handle different types of inputs within the same method name |
+
+---
+
+### **Advantages of Method Overriding**:
+1. **Dynamic Behavior**: It allows a subclass to customize or extend the behavior of a method defined in a parent class.
+2. **Code Reusability**: You can reuse code from the parent class and just override parts of it.
+3. **Polymorphism**: Supports runtime polymorphism, allowing methods to behave differently based on the object that invokes them.
+
+---
+
+### **Important Notes**:
+- **Inheritance**: Method overriding only works with inheritance. The subclass must inherit from the parent class.
+- **Same Signature**: The overriding method must have the same name and parameters as the parent class method.
+- **Overriding Constructors**: In Python, constructors (`__init__` methods) can also be overridden, but the parent constructor can be called using `super()` if needed.
+
+
+
+
 
 # Usage
 calc = Calculator()
