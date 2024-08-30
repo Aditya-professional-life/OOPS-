@@ -1680,5 +1680,111 @@ int main() {
 - **Python**: All methods are virtual by default.
 - **Java**: Methods are virtual by default; use `@Override` for clarity.
 - **C++**: Use the `virtual` keyword to declare virtual functions for runtime polymorphism.
+- 
+
+Here's a visually appealing breakdown of **Dynamic Binding** in Python, Java, and C++:
+
+---
+
+## 23 🔄 **Dynamic Binding**
+
+**Dynamic Binding**, also known as late binding, is a mechanism where the method to be invoked is determined at runtime based on the object type rather than the reference type. This is crucial for achieving runtime polymorphism in OOP.
+
+### 🐍 **In Python**
+
+Python uses dynamic binding by default because it is a dynamically-typed language. The method that gets called is resolved at runtime based on the actual object type.
+
+#### Example:
+```python
+class Base:
+    def greet(self):
+        print("Hello from Base")
+
+class Derived(Base):
+    def greet(self):
+        print("Hello from Derived")
+
+def call_greet(obj):
+    obj.greet()
+
+base = Base()
+derived = Derived()
+
+call_greet(base)    # Output: Hello from Base
+call_greet(derived) # Output: Hello from Derived
+```
+
+### ☕ **In Java**
+
+In Java, dynamic binding is achieved through method overriding. The method to be called is determined at runtime based on the object's actual type.
+
+#### Example:
+```java
+class Base {
+    void greet() {
+        System.out.println("Hello from Base");
+    }
+}
+
+class Derived extends Base {
+    @Override
+    void greet() {
+        System.out.println("Hello from Derived");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Base obj1 = new Base();
+        Base obj2 = new Derived();
+
+        obj1.greet();  // Output: Hello from Base
+        obj2.greet();  // Output: Hello from Derived
+    }
+}
+```
+
+### 🏆 **In C++**
+
+In C++, dynamic binding is achieved through virtual functions. The method to be called is resolved at runtime using the vtable mechanism.
+
+#### Example:
+```cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void greet() {
+        cout << "Hello from Base" << endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void greet() override {
+        cout << "Hello from Derived" << endl;
+    }
+};
+
+int main() {
+    Base* obj1 = new Base();
+    Base* obj2 = new Derived();
+
+    obj1->greet();  // Output: Hello from Base
+    obj2->greet();  // Output: Hello from Derived
+
+    delete obj1;
+    delete obj2;
+    return 0;
+}
+```
+
+### 🌟 **Summary**
+
+- **Python**: Dynamic binding is inherent due to its dynamic typing.
+- **Java**: Achieved through method overriding; methods are bound at runtime.
+- **C++**: Achieved using virtual functions and vtables to resolve method calls at runtime.
+
 
 
