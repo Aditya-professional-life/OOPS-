@@ -1156,3 +1156,195 @@ class Program {
 - When you want to allow classes to implement multiple behaviors (through multiple interfaces).
 - When you need a form of multiple inheritance.
 
+
+# 20🏛️ **Abstract Class in Object-Oriented Programming (OOP)**
+
+An **abstract class** is a class that cannot be instantiated on its own and is meant to be subclassed. It serves as a blueprint for other classes by defining methods that derived classes must implement. Abstract classes are essential for defining common behaviors while forcing child classes to provide specific implementations.
+
+### **Key Characteristics of an Abstract Class**:
+
+1. **Cannot Be Instantiated**: An abstract class cannot be used to create objects directly. It is meant to be subclassed by other classes.
+2. **Can Have Abstract Methods**: An abstract class can contain abstract methods, which are methods declared without any implementation. These methods must be implemented by any subclass of the abstract class.
+3. **Can Have Concrete Methods**: An abstract class can also contain concrete methods (fully defined methods with an implementation), which can be inherited and used by child classes.
+4. **Partial Implementation**: The abstract class provides a partial implementation, and it’s up to the child class to fill in the details by implementing the abstract methods.
+
+---
+
+### **Abstract Class in Different Languages:**
+
+#### **1. Abstract Class in Java**:
+
+In Java, an abstract class is declared using the `abstract` keyword. It can have both abstract and concrete methods. Any class that extends the abstract class must implement all the abstract methods.
+
+**Example in Java**:
+```java
+// Abstract class
+abstract class Animal {
+    // Abstract method (no implementation)
+    public abstract void sound();
+
+    // Concrete method
+    public void sleep() {
+        System.out.println("This animal is sleeping");
+    }
+}
+
+// Subclass must implement abstract methods
+class Dog extends Animal {
+    public void sound() {
+        System.out.println("Bark");
+    }
+}
+
+// Usage
+public class Main {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        myDog.sound();   // Output: Bark
+        myDog.sleep();   // Output: This animal is sleeping
+    }
+}
+```
+
+**Explanation**:
+- **`abstract class Animal`**: Declares the abstract method `sound()` and a concrete method `sleep()`.
+- **`class Dog`**: Extends the `Animal` class and provides its own implementation of the abstract method `sound()`.
+
+---
+
+#### **2. Abstract Class in Python** (Using `ABC` Module):
+
+In Python, abstract classes are created using the `abc` (Abstract Base Classes) module, and abstract methods are decorated with `@abstractmethod`. Any class inheriting from the abstract class must implement all abstract methods.
+
+**Example in Python**:
+```python
+from abc import ABC, abstractmethod
+
+# Abstract class
+class Animal(ABC):
+    # Abstract method
+    @abstractmethod
+    def sound(self):
+        pass
+
+    # Concrete method
+    def sleep(self):
+        print("This animal is sleeping")
+
+# Subclass must implement abstract methods
+class Dog(Animal):
+    def sound(self):
+        print("Bark")
+
+# Usage
+my_dog = Dog()
+my_dog.sound()  # Output: Bark
+my_dog.sleep()  # Output: This animal is sleeping
+```
+
+**Explanation**:
+- **`class Animal(ABC)`**: The `ABC` class marks `Animal` as an abstract class.
+- **`@abstractmethod`**: Defines `sound()` as an abstract method that must be implemented by any subclass.
+- **`Dog` class**: Implements the `sound()` method.
+
+---
+
+#### **3. Abstract Class in C#**:
+
+In C#, abstract classes are created using the `abstract` keyword. Just like in Java, abstract classes can have both abstract and concrete methods.
+
+**Example in C#**:
+```csharp
+// Abstract class
+abstract class Animal {
+    // Abstract method
+    public abstract void Sound();
+
+    // Concrete method
+    public void Sleep() {
+        Console.WriteLine("This animal is sleeping");
+    }
+}
+
+// Subclass must implement abstract methods
+class Dog : Animal {
+    public override void Sound() {
+        Console.WriteLine("Bark");
+    }
+}
+
+// Usage
+class Program {
+    static void Main() {
+        Animal myDog = new Dog();
+        myDog.Sound();  // Output: Bark
+        myDog.Sleep();  // Output: This animal is sleeping
+    }
+}
+```
+
+**Explanation**:
+- **`abstract class Animal`**: Declares an abstract method `Sound()` and a concrete method `Sleep()`.
+- **`class Dog : Animal`**: Implements the abstract method `Sound()` in the `Dog` subclass.
+
+---
+
+### **Why Use Abstract Classes?**
+
+- **Common Interface**: Abstract classes provide a common interface or behavior that different subclasses can implement in their own way. For example, different animals make different sounds, but all animals have a sound.
+- **Reuse**: Abstract classes allow the reuse of concrete methods by multiple subclasses, while enforcing that specific behaviors (abstract methods) are implemented.
+- **Enforces Implementation**: They ensure that subclasses provide specific implementations for the abstract methods, which helps in maintaining consistency across different subclasses.
+
+---
+
+### **Abstract Class vs Interface**:
+
+| Feature                | **Abstract Class**                   | **Interface**                       |
+|------------------------|--------------------------------------|-------------------------------------|
+| **Methods**            | Can have both abstract and concrete methods | Only method declarations (except in languages like Java, which allow default/static methods) |
+| **Fields**             | Can have fields/attributes           | Cannot have instance variables (in most languages) |
+| **Inheritance**        | A class can only extend one abstract class | A class can implement multiple interfaces |
+| **Constructor**        | Can have a constructor               | Cannot have a constructor          |
+| **Use Case**           | When you want to share common code and force subclasses to implement specific methods | When you want to define a contract that classes must follow without providing any code |
+
+---
+
+### **Example of Abstract Class Use Case**:
+
+Imagine you're building a transportation system that involves different types of vehicles (like `Car`, `Bike`, `Bus`). All vehicles need a way to start, but the way they start may differ. In this case, you can create an abstract class `Vehicle` with an abstract method `start()`, and each specific vehicle class can provide its own implementation.
+
+**Abstract Class Example**:
+```python
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+    @abstractmethod
+    def start(self):
+        pass
+
+class Car(Vehicle):
+    def start(self):
+        print("Starting the car...")
+
+class Bike(Vehicle):
+    def start(self):
+        print("Starting the bike...")
+
+# Usage
+car = Car()
+car.start()  # Output: Starting the car...
+
+bike = Bike()
+bike.start()  # Output: Starting the bike...
+```
+
+---
+
+### **Advantages of Abstract Classes**:
+
+1. **Code Reusability**: Concrete methods can be reused across subclasses.
+2. **Consistency**: Ensures that all subclasses implement certain required behaviors.
+3. **Partial Implementation**: Allows providing a partial implementation, letting the subclasses fill in the details.
+4. **Abstraction**: Provides a way to define what actions should be available to an object without defining how those actions work.
+
+---
