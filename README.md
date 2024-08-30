@@ -1592,3 +1592,93 @@ print("Sum of 3 numbers:", calc.add(10, 20, 30))      # Output: 60
 2. **Reusability**: Allows you to reuse method names, thus making code concise and readable.
 3. **Compile-Time Polymorphism**: Helps achieve compile-time polymorphism, improving program flexibility.
 
+
+Here’s a breakdown of how virtual functions are handled in Python, Java, and C++:
+
+---
+
+## 22 🚀 **Virtual Functions**
+
+### 🐍 **In Python**
+
+Python does not have a specific `virtual` keyword. All methods in Python are essentially virtual by default. This means that if a method is overridden in a derived class, the overridden method in the derived class will be called.
+
+#### Example:
+```python
+class Base:
+    def greet(self):
+        print("Hello from Base")
+
+class Derived(Base):
+    def greet(self):
+        print("Hello from Derived")
+
+obj = Derived()
+obj.greet()  # Output: Hello from Derived
+```
+
+### ☕ **In Java**
+
+In Java, methods are virtual by default. To explicitly declare a method that should be overridden in a derived class, use the `@Override` annotation. However, the `virtual` keyword is not used.
+
+#### Example:
+```java
+class Base {
+    void greet() {
+        System.out.println("Hello from Base");
+    }
+}
+
+class Derived extends Base {
+    @Override
+    void greet() {
+        System.out.println("Hello from Derived");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Base obj = new Derived();
+        obj.greet();  // Output: Hello from Derived
+    }
+}
+```
+
+### 🏆 **In C++**
+
+In C++, virtual functions are explicitly declared using the `virtual` keyword in the base class. This allows derived classes to override these methods. C++ uses dynamic binding to resolve which method to call at runtime.
+
+#### Example:
+```cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void greet() {
+        cout << "Hello from Base" << endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void greet() override {
+        cout << "Hello from Derived" << endl;
+    }
+};
+
+int main() {
+    Base* obj = new Derived();
+    obj->greet();  // Output: Hello from Derived
+    delete obj;
+    return 0;
+}
+```
+
+### 🌟 **Summary**
+
+- **Python**: All methods are virtual by default.
+- **Java**: Methods are virtual by default; use `@Override` for clarity.
+- **C++**: Use the `virtual` keyword to declare virtual functions for runtime polymorphism.
+
+
