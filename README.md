@@ -1440,7 +1440,7 @@ class Calculator:
 ```
 
 
-# 23 🔄 **Method Overriding in Python**
+# 21 🔄 **Method Overriding in Python**
 
 **Method Overriding** is a feature in object-oriented programming where a subclass provides a specific implementation of a method that is already defined in its parent class. The method in the subclass overrides the method in the parent class, allowing for dynamic (runtime) polymorphism.
 
