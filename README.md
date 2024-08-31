@@ -2137,3 +2137,42 @@ print(singleton1 is singleton2)  # Output: True (Both variables point to the sam
 - **Difficult to Extend**: Restricts inheritance due to the private constructor.
 
 
+### 27. 🧩 OOP Design Principles (SOLID): Why Are They Needed?
+
+The **SOLID principles** are a set of five design principles aimed at creating flexible, maintainable, and scalable software. These principles guide developers to write code that is easy to understand, extend, and maintain over time, reducing bugs and technical debt.
+
+#### SOLID Acronym:
+1. **S** – **Single Responsibility Principle (SRP)**: A class should have only one reason to change, meaning it should only have one job or responsibility.
+2. **O** – **Open/Closed Principle (OCP)**: Software entities (classes, modules, functions) should be open for extension but closed for modification.
+3. **L** – **Liskov Substitution Principle (LSP)**: Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.
+4. **I** – **Interface Segregation Principle (ISP)**: No client should be forced to depend on methods it does not use. Interfaces should be specific to the client.
+5. **D** – **Dependency Inversion Principle (DIP)**: High-level modules should not depend on low-level modules. Both should depend on abstractions.
+
+#### Why Are SOLID Principles Needed?
+
+1. **Maintainability**: Code adhering to SOLID is easier to modify and adapt to new requirements. Each class or module has a clear, well-defined responsibility.
+2. **Extensibility**: Encourages writing extensible code that can be expanded without changing existing code, which reduces the risk of introducing bugs.
+3. **Testability**: Classes following these principles are easier to test because dependencies are minimized and responsibilities are separated.
+4. **Flexibility**: Promotes decoupling and modularity, making code flexible and adaptable to change.
+5. **Scalability**: As projects grow, adhering to SOLID principles ensures that the system architecture remains clean and understandable, allowing for smooth scalability.
+
+#### Code Example (Single Responsibility Principle - SRP):
+
+```python
+class InvoicePrinter:
+    def print(self, invoice):
+        # Logic for printing the invoice
+        pass
+
+class Invoice:
+    def __init__(self, customer, items):
+        self.customer = customer
+        self.items = items
+
+    def calculate_total(self):
+        # Logic to calculate the total price
+        return sum(item.price for item in self.items)
+```
+Here, `Invoice` is responsible for managing invoice details and calculations, while `InvoicePrinter` is responsible for printing. Each class has a single responsibility.
+
+
