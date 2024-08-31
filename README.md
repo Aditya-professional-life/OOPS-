@@ -2480,6 +2480,84 @@ Now, `OldPrinter` implements only the `IPrinter` interface, and `ModernPrinter` 
 
 
 
+### 32. 🔄 Dependency Inversion Principle (DIP): An Explanation with Example
+
+The **Dependency Inversion Principle (DIP)** is the fifth and final principle in the SOLID design principles. It states that **high-level modules should not depend on low-level modules. Both should depend on abstractions (interfaces)**. Moreover, **abstractions should not depend on details; details should depend on abstractions**.
+
+#### Why DIP is Important:
+- **Decoupling**: It decouples high-level logic from the low-level implementation details, making the system more flexible and easier to maintain.
+- **Easier Refactoring**: You can change the low-level modules (implementation details) without affecting the high-level modules.
+- **Improved Testability**: Allows easier testing and mocking since dependencies are based on interfaces or abstract classes rather than concrete implementations.
+
+#### Example: Notification System
+
+##### Without DIP (Violating the Principle):
+In this example, the `Notification` class directly depends on the `EmailService` class. If we need to add another notification method (like SMS), we would have to modify the `Notification` class, violating DIP by tightly coupling it with the low-level `EmailService`.
+
+```python
+class EmailService:
+    def send_email(self, message):
+        print(f"Sending email: {message}")
+
+class Notification:
+    def __init__(self, email_service: EmailService):
+        self.email_service = email_service
+
+    def send(self, message):
+        self.email_service.send_email(message)
+```
+
+If you wanted to add an `SMSService`, you would need to modify the `Notification` class, which breaks the **Dependency Inversion Principle**.
+
+##### With DIP (Adhering to the Principle):
+To adhere to DIP, we introduce an interface `MessageService`, and both `EmailService` and `SMSService` will implement this interface. Now, `Notification` depends on the `MessageService` abstraction, not a concrete class.
+
+```python
+from abc import ABC, abstractmethod
+
+# Abstraction (Interface)
+class MessageService(ABC):
+    @abstractmethod
+    def send_message(self, message):
+        pass
+
+# Low-level module (EmailService)
+class EmailService(MessageService):
+    def send_message(self, message):
+        print(f"Sending email: {message}")
+
+# Low-level module (SMSService)
+class SMSService(MessageService):
+    def send_message(self, message):
+        print(f"Sending SMS: {message}")
+
+# High-level module (Notification)
+class Notification:
+    def __init__(self, service: MessageService):
+        self.service = service
+
+    def send(self, message):
+        self.service.send_message(message)
+
+# Client code
+email_service = EmailService()
+notification = Notification(email_service)
+notification.send("Hello via Email!")  # Output: Sending email: Hello via Email!
+
+sms_service = SMSService()
+notification_sms = Notification(sms_service)
+notification_sms.send("Hello via SMS!")  # Output: Sending SMS: Hello via SMS!
+```
+
+In this approach:
+- **High-level module**: `Notification` depends on the `MessageService` interface, not the concrete `EmailService` or `SMSService` classes.
+- **Low-level modules**: `EmailService` and `SMSService` are interchangeable because they both implement the `MessageService` interface.
+
+#### Benefits:
+- **Loose Coupling**: The `Notification` class is decoupled from the implementation of specific message services like email or SMS.
+- **Extensibility**: Adding new services (e.g., PushNotificationService) does not require modifying the `Notification` class.
+- **Better Testing**: You can easily mock the `MessageService` interface in unit tests.
+
 
 
 
