@@ -2392,7 +2392,91 @@ In this approach:
 
 ---
 
+### 31. 🖇️ Interface Segregation Principle (ISP): An Explanation with Example
 
+The **Interface Segregation Principle (ISP)** is the fourth principle in the SOLID design principles. It states that **no client should be forced to depend on methods it does not use**. This means that larger, general-purpose interfaces should be broken down into smaller, more specific interfaces, so that clients only need to implement what they actually use.
+
+#### Why ISP is Important:
+- **Focused Interfaces**: Ensures that interfaces are highly specific and focused on a particular client or functionality.
+- **Decoupling**: Reduces dependencies between classes by allowing clients to depend only on the interfaces they need.
+- **Easier Maintenance**: Smaller interfaces are easier to implement, maintain, and extend without affecting other parts of the code.
+
+#### Example: Printing System
+
+##### Without ISP (Violating the Principle):
+In this example, the `Printer` interface includes multiple methods for different types of printers. If a client only needs a basic printer that prints, it still has to implement methods it doesn't use (like `scan` or `fax`), violating ISP.
+
+```python
+class Printer:
+    def print(self, document):
+        pass
+
+    def scan(self, document):
+        pass
+
+    def fax(self, document):
+        pass
+
+class OldPrinter(Printer):
+    def print(self, document):
+        print("Printing document")
+
+    def scan(self, document):
+        # Old printers don't scan, but still have to implement this
+        raise NotImplementedError("Scan not supported")
+
+    def fax(self, document):
+        # Old printers don't fax, but still have to implement this
+        raise NotImplementedError("Fax not supported")
+```
+
+Here, `OldPrinter` does not need the `scan` or `fax` methods, but it still has to implement them, even if only to raise errors, which violates ISP.
+
+##### With ISP (Adhering to the Principle):
+To adhere to ISP, we break down the large `Printer` interface into smaller, more focused interfaces. Each class can now implement only the interfaces it needs.
+
+```python
+from abc import ABC, abstractmethod
+
+# Smaller, focused interfaces
+class IPrinter(ABC):
+    @abstractmethod
+    def print(self, document):
+        pass
+
+class IScanner(ABC):
+    @abstractmethod
+    def scan(self, document):
+        pass
+
+class IFax(ABC):
+    @abstractmethod
+    def fax(self, document):
+        pass
+
+# Implement only the necessary interfaces
+class OldPrinter(IPrinter):
+    def print(self, document):
+        print("Printing document")
+
+# A modern printer that supports all functionalities
+class ModernPrinter(IPrinter, IScanner, IFax):
+    def print(self, document):
+        print("Printing document")
+
+    def scan(self, document):
+        print("Scanning document")
+
+    def fax(self, document):
+        print("Faxing document")
+```
+
+Now, `OldPrinter` implements only the `IPrinter` interface, and `ModernPrinter` implements `IPrinter`, `IScanner`, and `IFax`, adhering to the **Interface Segregation Principle**.
+
+#### Benefits:
+- **Smaller Interfaces**: Each class implements only the methods it actually uses, leading to more focused and maintainable code.
+- **Less Dependency**: Reduces unnecessary dependencies between classes and interfaces.
+- **Easier Extensibility**: Adding new functionalities (like `scan` or `fax`) can be done independently without modifying existing interfaces.
 
 
 
