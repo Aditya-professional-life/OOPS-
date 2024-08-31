@@ -2099,5 +2099,41 @@ print(team2.leader.age)  # Output: 35
 - **Shallow Copy**: Copies the outer object but not the inner objects. Changes to the inner objects affect both the original and the copy.
 - **Deep Copy**: Copies both the outer object and all inner objects, creating a completely independent duplicate.
 
+### 26. 🔒 Singleton Design Pattern: Ensuring a Class Has Only One Instance
+
+The **Singleton Design Pattern** ensures that a class has only one instance throughout the application's lifecycle and provides a global point of access to that instance. This pattern is useful when exactly one object is needed to coordinate actions across the system, such as logging, database connections, or thread pools.
+
+#### Key Features:
+1. **Private Constructor**: The constructor is private to prevent instantiation from other classes.
+2. **Static Instance**: A static variable holds the single instance of the class.
+3. **Global Access**: A public static method (often called `getInstance()`) provides a way to access the instance.
+
+#### Code Example (Python):
+
+```python
+class Singleton:
+    _instance = None  # Static variable to hold the single instance
+
+    # Private constructor
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Singleton, cls).__new__(cls)
+        return cls._instance
+
+# Usage
+singleton1 = Singleton()
+singleton2 = Singleton()
+
+print(singleton1 is singleton2)  # Output: True (Both variables point to the same instance)
+```
+
+#### Advantages:
+- **Controlled Access**: Ensures a single point of access to the object.
+- **Reduced Memory Usage**: Only one instance exists, reducing memory overhead.
+- **Consistent State**: Ensures that multiple parts of the program share the same instance and state.
+
+#### Disadvantages:
+- **Global State**: Can lead to tight coupling and make testing harder.
+- **Difficult to Extend**: Restricts inheritance due to the private constructor.
 
 
