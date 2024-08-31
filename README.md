@@ -2306,12 +2306,91 @@ print(create_report(csv))  # Output: Generating CSV Report
 ---
 
 
+### 30. 🔄 Liskov Substitution Principle (LSP): An Explanation with Example
 
+The **Liskov Substitution Principle (LSP)** is the third principle in the SOLID design principles. It states that **objects of a superclass should be replaceable with objects of a subclass** without affecting the correctness of the program. In simpler terms, **subtypes must be substitutable for their base types** without altering the behavior or outcome.
 
+#### Why LSP is Important:
+- **Correct Inheritance**: It ensures that subclasses can stand in for the parent class, keeping the system reliable and predictable.
+- **Consistency**: Maintains consistent behavior across a hierarchy of classes, allowing for safer polymorphism and code reuse.
+- **Prevents Broken Contracts**: Adhering to LSP ensures that a subclass respects the "contract" of the parent class.
 
+#### Example: Shape Area Calculation
 
+##### Without LSP (Violating the Principle):
+Here, `Rectangle` is the parent class and `Square` is a subclass of `Rectangle`. However, `Square` violates LSP because setting the width or height individually breaks the behavior expected from a `Rectangle`.
 
+```python
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
 
+    def set_width(self, width):
+        self.width = width
+
+    def set_height(self, height):
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+class Square(Rectangle):
+    def set_width(self, width):
+        self.width = self.height = width  # Violates LSP by changing both width and height
+
+    def set_height(self, height):
+        self.width = self.height = height  # Violates LSP by changing both width and height
+```
+
+When using `Square` in place of `Rectangle`, the contract of the `Rectangle` class is broken because changing one dimension (either width or height) affects both, which is not expected in a `Rectangle`.
+
+##### With LSP (Adhering to the Principle):
+To adhere to LSP, we should separate the behavior of `Rectangle` and `Square`, so that each class works as intended. We create a `Shape` base class and let `Rectangle` and `Square` inherit independently.
+
+```python
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+class Square(Shape):
+    def __init__(self, side):
+        self.side = side
+
+    def area(self):
+        return self.side * self.side
+
+# Client Code
+def print_area(shape: Shape):
+    print(f"The area is: {shape.area()}")
+
+# Usage
+rectangle = Rectangle(5, 10)
+square = Square(7)
+
+print_area(rectangle)  # Output: The area is: 50
+print_area(square)     # Output: The area is: 49
+```
+
+In this approach:
+- The `Rectangle` and `Square` classes both implement the `Shape` class without interfering with each other's behavior.
+- Both can be used interchangeably with the `print_area()` function, adhering to the **Liskov Substitution Principle**.
+
+#### Benefits:
+- **Correct Substitution**: The `Square` class can now be substituted for the `Shape` class without breaking any existing functionality.
+- **Safe Polymorphism**: This design allows for safer and more predictable polymorphism.
+- **More Predictable Behavior**: Ensures that subclasses do not introduce unexpected changes in behavior when substituted for their parent class.
+
+---
 
 
 
