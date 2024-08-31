@@ -2826,4 +2826,121 @@ objgraph.show_most_common_types()
 - **Prevention in Java**: Avoid long-lived object references and manage external resources properly.
 - **Prevention in Python**: Handle cyclic references using the `gc` module and close resources explicitly.
 
+### 36. 🧠 Smart Pointers (C++): Automatic Memory Management in C++
+
+**Smart pointers** in C++ are objects that wrap around a raw pointer and automatically manage memory by ensuring that the memory is properly deallocated when it is no longer needed. This helps prevent memory leaks and dangling pointers, which are common issues in manual memory management.
+
+#### Why Smart Pointers?
+- **Automatic Memory Deallocation**: Smart pointers ensure that memory is automatically released when it is no longer in use.
+- **Prevents Memory Leaks**: Since the deallocation is automatic, smart pointers reduce the risk of forgetting to free memory, a common source of memory leaks in C++.
+- **Manages Ownership Semantics**: Different types of smart pointers in C++ (`unique_ptr`, `shared_ptr`, and `weak_ptr`) enforce different ownership rules, making memory management safer and easier to understand.
+
+### Types of Smart Pointers in C++:
+
+---
+
+### 1. 🔑 `std::unique_ptr`: Exclusive Ownership
+
+- **Description**: A `unique_ptr` manages the lifetime of a single object, ensuring that it is **exclusively owned**. This means only one `unique_ptr` can point to a given object at any time. When the `unique_ptr` goes out of scope, the object it points to is automatically deleted.
+- **Move-Only**: `unique_ptr` cannot be copied, but it can be **moved**, transferring ownership.
+
+```cpp
+#include <memory>
+#include <iostream>
+
+void example() {
+    std::unique_ptr<int> ptr1 = std::make_unique<int>(10);  // Allocating an integer
+    std::cout << *ptr1 << std::endl;  // Accessing the integer value
+    
+    std::unique_ptr<int> ptr2 = std::move(ptr1);  // Transfer ownership to ptr2
+    // ptr1 is now null
+}
+```
+
+- **Use Case**: When you want **exclusive ownership** of a resource and want to ensure no two smart pointers manage the same resource.
+
+---
+
+### 2. 🤝 `std::shared_ptr`: Shared Ownership
+
+- **Description**: A `shared_ptr` manages the lifetime of an object through **shared ownership**. Multiple `shared_ptr` objects can point to the same object, and the object is only deleted when the **last** `shared_ptr` is destroyed or reset.
+- **Reference Counting**: `shared_ptr` maintains a **reference count**. Each time a new `shared_ptr` points to the same object, the reference count is incremented. When a `shared_ptr` is destroyed, the reference count is decremented. When the count reaches zero, the object is deleted.
+
+```cpp
+#include <memory>
+#include <iostream>
+
+void example() {
+    std::shared_ptr<int> ptr1 = std::make_shared<int>(20);  // Allocating an integer
+    std::shared_ptr<int> ptr2 = ptr1;  // Shared ownership
+    
+    std::cout << "Reference count: " << ptr1.use_count() << std::endl;  // Outputs: 2
+    
+    ptr1.reset();  // Reduces reference count
+    std::cout << "Reference count after reset: " << ptr2.use_count() << std::endl;  // Outputs: 1
+}
+```
+
+- **Use Case**: When you need **shared ownership** of a resource, such as when multiple parts of a program need access to the same object.
+
+---
+
+### 3. 🕶️ `std::weak_ptr`: Non-Ownership Weak Reference
+
+- **Description**: A `weak_ptr` is used to reference an object managed by a `shared_ptr`, but it **does not contribute to the reference count**. It allows you to access an object without owning it, preventing cyclic references between `shared_ptr` objects, which can lead to memory leaks.
+- **Weak Reference**: A `weak_ptr` does not control the lifetime of the object, so it won’t prevent the object from being destroyed. To access the object, you must convert it to a `shared_ptr` using `lock()`.
+
+```cpp
+#include <memory>
+#include <iostream>
+
+void example() {
+    std::shared_ptr<int> sptr = std::make_shared<int>(30);  // Shared ownership
+    std::weak_ptr<int> wptr = sptr;  // Weak reference, no ownership
+    
+    if (auto temp = wptr.lock()) {  // Check if the object is still valid
+        std::cout << *temp << std::endl;  // Access the object
+    } else {
+        std::cout << "Object has been deleted." << std::endl;
+    }
+    
+    sptr.reset();  // Object is deleted
+}
+```
+
+- **Use Case**: To break **cyclic references** and avoid memory leaks when using `shared_ptr`. `weak_ptr` allows you to check if the object still exists before accessing it.
+
+---
+
+### 4. 🛠️ Custom Deleters with Smart Pointers
+Smart pointers in C++ also allow you to specify custom deleters, enabling you to customize how memory is deallocated.
+
+```cpp
+#include <memory>
+#include <iostream>
+
+void custom_deleter(int* ptr) {
+    std::cout << "Deleting pointer with custom deleter" << std::endl;
+    delete ptr;
+}
+
+void example() {
+    std::unique_ptr<int, decltype(&custom_deleter)> ptr(new int(40), custom_deleter);  // Custom deleter
+}
+```
+
+---
+
+#### **Advantages of Smart Pointers**:
+- **Automatic Memory Management**: Smart pointers automatically free memory, reducing the risk of memory leaks.
+- **Ownership Semantics**: They enforce clear ownership rules, making code easier to understand and maintain.
+- **Avoiding Dangling Pointers**: Smart pointers ensure that an object is only accessed while it is valid.
+
+---
+
+#### **Summary of Smart Pointers**:
+- **`std::unique_ptr`**: Exclusive ownership, single ownership of an object.
+- **`std::shared_ptr`**: Shared ownership, reference counting to manage the lifetime of an object.
+- **`std::weak_ptr`**: Weak reference to an object, used to prevent cyclic references without contributing to the reference count.
+
 
