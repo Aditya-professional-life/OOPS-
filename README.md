@@ -2231,3 +2231,94 @@ class EmployeeRepository:
 - **Employee** class focuses solely on holding employee details.
 - **EmployeeSalaryCalculator** focuses on salary calculations, making it easier to modify salary logic without touching the employee class.
 - **EmployeeRepository** handles saving the data, separating concerns for database management.
+
+
+
+### 29. 🚪 Open/Closed Principle (OCP): An Explanation with Example
+
+The **Open/Closed Principle (OCP)** is the second principle in the SOLID framework. It states that **software entities (classes, modules, functions) should be open for extension but closed for modification**. This means you should be able to add new functionality to a class without altering its existing code, which helps prevent introducing bugs in previously tested code.
+
+#### Why OCP is Important:
+- **Preventing Regressions**: By not modifying existing code, you reduce the risk of breaking existing functionality.
+- **Extensibility**: Allows developers to extend the system with new features or behaviors without touching the old, stable codebase.
+- **Modularity**: Keeps classes focused on their original purpose, and new behaviors can be added via inheritance or composition.
+
+#### Example: Report Generation System
+
+##### Without OCP (Violating the Principle):
+In this example, the `Report` class handles generating both PDF and Excel reports. If we need to add another report type (e.g., CSV), we would have to modify the existing class, violating OCP.
+
+```python
+class Report:
+    def generate_report(self, report_type):
+        if report_type == 'PDF':
+            # Logic to generate PDF report
+            return "Generating PDF Report"
+        elif report_type == 'Excel':
+            # Logic to generate Excel report
+            return "Generating Excel Report"
+```
+
+##### With OCP (Adhering to the Principle):
+By adhering to OCP, we can introduce a base `Report` class and extend it to add new types of reports without modifying the original class. New report types can be added by extending the base class.
+
+```python
+from abc import ABC, abstractmethod
+
+class Report(ABC):
+    @abstractmethod
+    def generate_report(self):
+        pass
+
+class PDFReport(Report):
+    def generate_report(self):
+        return "Generating PDF Report"
+
+class ExcelReport(Report):
+    def generate_report(self):
+        return "Generating Excel Report"
+
+# Adding a new report type (e.g., CSV) without modifying the original classes
+class CSVReport(Report):
+    def generate_report(self):
+        return "Generating CSV Report"
+
+# Client Code
+def create_report(report: Report):
+    return report.generate_report()
+
+# Usage
+pdf = PDFReport()
+print(create_report(pdf))  # Output: Generating PDF Report
+
+excel = ExcelReport()
+print(create_report(excel))  # Output: Generating Excel Report
+
+csv = CSVReport()
+print(create_report(csv))  # Output: Generating CSV Report
+```
+
+#### Benefits:
+- **No Modification of Existing Code**: You don't need to touch the `Report` class to add a new report type (like CSV), making the code more stable.
+- **Easy to Extend**: Adding new report types is as simple as creating a new class that extends `Report`.
+- **Less Risk of Bugs**: The old code stays untouched and is already tested, reducing the risk of introducing bugs.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
