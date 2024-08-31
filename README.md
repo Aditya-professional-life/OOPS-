@@ -2176,3 +2176,58 @@ class Invoice:
 Here, `Invoice` is responsible for managing invoice details and calculations, while `InvoicePrinter` is responsible for printing. Each class has a single responsibility.
 
 
+### 28. 📄 Single Responsibility Principle (SRP): An Example
+
+The **Single Responsibility Principle (SRP)** states that a class should have only one reason to change, meaning it should only have **one responsibility** or **job**. This makes the class easier to maintain, extend, and test.
+
+#### Why SRP is Important:
+- **Focused Responsibility**: Each class should focus on only one thing, making it simpler and cleaner.
+- **Ease of Maintenance**: If changes are required, you only need to modify the class with that specific responsibility.
+- **Avoids Coupling**: Prevents classes from becoming tightly coupled, reducing complexity.
+
+#### Example: Managing Employee Data
+
+##### Without SRP (Violating the Principle):
+Here, the `Employee` class handles multiple responsibilities like saving to the database and calculating salaries. This violates SRP because it does more than just manage employee data.
+
+```python
+class Employee:
+    def __init__(self, name, role, salary):
+        self.name = name
+        self.role = role
+        self.salary = salary
+
+    def save_to_database(self):
+        # Logic to save employee details to the database
+        pass
+
+    def calculate_salary(self):
+        # Logic to calculate salary based on the role
+        return self.salary
+```
+
+##### With SRP (Adhering to the Principle):
+To follow SRP, we split responsibilities into different classes: `Employee` handles employee details, `EmployeeSalaryCalculator` handles salary calculation, and `EmployeeRepository` handles database saving.
+
+```python
+class Employee:
+    def __init__(self, name, role, salary):
+        self.name = name
+        self.role = role
+        self.salary = salary
+
+class EmployeeSalaryCalculator:
+    def calculate_salary(self, employee):
+        # Logic to calculate salary based on the role
+        return employee.salary
+
+class EmployeeRepository:
+    def save_to_database(self, employee):
+        # Logic to save employee details to the database
+        pass
+```
+
+##### Benefits:
+- **Employee** class focuses solely on holding employee details.
+- **EmployeeSalaryCalculator** focuses on salary calculations, making it easier to modify salary logic without touching the employee class.
+- **EmployeeRepository** handles saving the data, separating concerns for database management.
